@@ -45,22 +45,35 @@ export const UserList = () => {
   ]
 
   if (isError) {
-    return <span>Error: {error.message}</span>
+    return (
+      <div className="flex h-[50vh] items-center justify-center text-red-500">
+        <span>Error: {error.message}</span>
+      </div>
+    )
   }
   return (
-    <div>
-      <h2>User List</h2>
-      <p>Check the console for fetched user data.</p>
-      {
-        isPending ? <p>Loading users...</p> :<UsersTable
-        data={users?.data || []}
-        columns={columns}
-        page={users?.page}
-        perPage={users?.per_page}
-        totalPages={users?.total_pages}
-      />
-      }
-      
+    <div className="container mx-auto py-10 space-y-8">
+      <div className="flex flex-col space-y-2">
+        <h2 className="text-3xl font-bold tracking-tight">User List</h2>
+        <p className="text-muted-foreground">
+          Manage and view the list of registered users.
+        </p>
+      </div>
+
+      {isPending ? (
+        <div className="flex h-64 items-center justify-center">
+          <p className="text-muted-foreground animate-pulse">Loading users...</p>
+        </div>
+      ) : (
+        <div className="rounded-md border bg-card">
+          <UsersTable
+            data={users.data}
+            columns={columns}
+            page={users?.page}
+            totalPages={users?.total_pages}
+          />
+        </div>
+      )}
     </div>
   )
 }

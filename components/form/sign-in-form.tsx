@@ -47,7 +47,7 @@ export const SignInForm = () => {
         sameSite: 'Lax',
       });
       toast.success('Sesión iniciada correctamente.');
-      router.push('/dashboard');
+      router.push('/users');
     },
   });
 

@@ -40,7 +40,7 @@ export const SignUpForm = () => {
     },
     onSuccess: () => {
       setPassword('');
-      router.push('/');
+      router.push('/users');
     },
   });
 

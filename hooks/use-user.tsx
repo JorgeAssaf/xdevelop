@@ -14,7 +14,9 @@ export const useUsers = ({ page }: { page: number }) => {
       if (!response.ok) {
         throw new Error("Network response was not ok")
       }
-      return (await response.json()) as UsersResponse
+      const data = (await response.json()) as UsersResponse
+      console.log(data)
+      return data
     },
 
     refetchOnWindowFocus: false,

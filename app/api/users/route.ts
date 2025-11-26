@@ -24,7 +24,10 @@ export async function GET(request: NextRequest) {
       role: user.id % 2 === 0 ? 'admin' : 'user',
     }));
 
-    return NextResponse.json(mappedUsers, { status: 200 });
+    return NextResponse.json({
+      ...users,
+      data: mappedUsers,
+    }, { status: 200 });
   } catch (err) {
     return NextResponse.json(
       { error: 'Failed to fetch users' + (err instanceof Error ? ': ' + err.message : '') },
