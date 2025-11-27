@@ -1,9 +1,14 @@
-import { UserList } from "@/components/fetch";
+import { UserList } from "@/components/user-list"
 
-export default function UsersPage() {
+export default async function UsersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const resolveSearchParams = await searchParams
   return (
     <div>
-      <UserList />
+      <UserList searchParams={resolveSearchParams} />
     </div>
-  );
+  )
 }
