@@ -1,15 +1,17 @@
 "use client"
 
 import { useUsers } from "@/hooks/use-user"
-import { useSearchParams } from "next/navigation"
 import type { User } from "@/types/user"
 import type { ColumnDef } from "@tanstack/react-table"
 import Image from "next/image"
 import { UsersTable } from "./users-table"
 
-export const UserList = () => {
-  const searchParams = useSearchParams()
-  const page = Number(searchParams.get("page")) || 1
+export const UserList = ({
+  searchParams,
+}: {
+  searchParams: { page?: string | undefined }
+}) => {
+  const page = Number(searchParams.page) || 1
   const { isPending, isError, data: users, error } = useUsers({ page })
   const columns: ColumnDef<User>[] = [
     {
@@ -62,7 +64,9 @@ export const UserList = () => {
 
       {isPending ? (
         <div className="flex h-64 items-center justify-center">
-          <p className="text-muted-foreground animate-pulse">Loading users...</p>
+          <p className="text-muted-foreground animate-pulse">
+            Loading users...
+          </p>
         </div>
       ) : (
         <div className="rounded-md border bg-card">
