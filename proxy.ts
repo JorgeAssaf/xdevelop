@@ -2,7 +2,6 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export function proxy(request: NextRequest) {
-  console.log(request.nextUrl.pathname);
   const token = request.cookies.get("token")?.value;
   if (!token) {
     return NextResponse.redirect(new URL("/auth/sign-in", request.url))
