@@ -22,8 +22,6 @@ export const config = {
     "/post",
     "/post/:path*",
     "/users",
-    "/auth/sign-in",
-    "/auth/sign-up",
   ],
 
 } 
