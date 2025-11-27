@@ -6,9 +6,7 @@ export async function GET() {
   const tokenCookie = (await cookies()).get("token")
 
   if (!tokenCookie) {
-    return NextResponse.redirect(
-      new URL("/api/auth/login", "http://localhost:3000"),
-    )
+    return NextResponse.redirect(new URL("/api/auth/sign-in"))
   }
   const userId = tokenCookie.value.at(-1)
 
@@ -31,11 +29,11 @@ export async function GET() {
       { status: 500 },
     )
   }
-  const userData = await user.json() as { data: User };
+  const userData = (await user.json()) as { data: User }
   const mappedUser: User = {
     ...userData.data,
-    role: userData.data.id % 2 === 0 ? 'admin' : 'user',
-  };
+    role: userData.data.id % 2 === 0 ? "admin" : "user",
+  }
 
   return NextResponse.json({ user: mappedUser }, { status: 200 })
 }
