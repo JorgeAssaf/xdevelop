@@ -9,7 +9,7 @@ export function proxy(request: NextRequest) {
   if (token && (request.nextUrl.pathname === "/auth/sign-in" || request.nextUrl.pathname === "/auth/sign-up")) {
     return NextResponse.redirect(new URL("/users", request.url))
   }
-  return NextResponse.next();
+  NextResponse.next();
 }
 
 export const config = {
