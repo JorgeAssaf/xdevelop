@@ -15,7 +15,6 @@ export const useUsers = ({ page }: { page: number }) => {
         throw new Error("Network response was not ok")
       }
       const data = (await response.json()) as UsersResponse
-      console.log(data)
       return data
     },
 

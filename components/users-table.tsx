@@ -33,7 +33,6 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
 }: UserTableProps<TData, TValue>) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  console.log(data)
   const table = useReactTable({
     data,
     columns,
@@ -50,13 +49,13 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
   })
   const updatePage = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString())
-    params.set('page', newPage.toString())
+    params.set("page", newPage.toString())
     router.push(`?${params.toString()}`)
   }
   const updatePageSize = (newPageSize: number) => {
     const params = new URLSearchParams(searchParams.toString())
-    params.set('per_page', newPageSize.toString())
-    params.set('page', '1')
+    params.set("per_page", newPageSize.toString())
+    params.set("page", "1")
     router.push(`?${params.toString()}`)
   }
   return (
@@ -73,7 +72,7 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
                         ? null
                         : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                     </TableHead>
                   )
@@ -87,18 +86,19 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                  data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </TableCell>
                   ))}
                   <TableCell>
                     <Link
                       href={`/posts/${row.original.id}`}
-                      className="text-blue-500 hover:underline"
-                    >
+                      className="text-blue-500 hover:underline">
                       Ver Posts
                     </Link>
                   </TableCell>
@@ -106,7 +106,9 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
               ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length + 1} className="h-24 text-center">
+                <TableCell
+                  colSpan={columns.length + 1}
+                  className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -118,16 +120,14 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
         <button
           onClick={() => updatePage(1)}
           disabled={page === 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
-        >
-          {'<<'}
+          className="px-3 py-1 border rounded disabled:opacity-50">
+          {"<<"}
         </button>
         <button
           onClick={() => updatePage(page - 1)}
           disabled={page === 1}
-          className="px-3 py-1 border rounded disabled:opacity-50"
-        >
-          {'<'}
+          className="px-3 py-1 border rounded disabled:opacity-50">
+          {"<"}
         </button>
         <span className="px-3">
           Página {page} de {totalPages}
@@ -135,23 +135,20 @@ export function UsersTable<TData extends { id: string | number }, TValue>({
         <button
           onClick={() => updatePage(page + 1)}
           disabled={page === totalPages}
-          className="px-3 py-1 border rounded disabled:opacity-50"
-        >
-          {'>'}
+          className="px-3 py-1 border rounded disabled:opacity-50">
+          {">"}
         </button>
         <button
           onClick={() => updatePage(totalPages)}
           disabled={page === totalPages}
-          className="px-3 py-1 border rounded disabled:opacity-50"
-        >
-          {'>>'}
+          className="px-3 py-1 border rounded disabled:opacity-50">
+          {">>"}
         </button>
         <select
           value={perPage}
-          onChange={e => updatePageSize(Number(e.target.value))}
-          className="px-2 py-1 border rounded"
-        >
-          {[6, 10, 20, 30, 40, 50].map(pageSize => (
+          onChange={(e) => updatePageSize(Number(e.target.value))}
+          className="px-2 py-1 border rounded">
+          {[6, 10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               {pageSize}
             </option>

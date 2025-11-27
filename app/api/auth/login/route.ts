@@ -1,4 +1,3 @@
-import type { UsersResponse } from "@/types/user"
 import { cookies } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -25,10 +24,6 @@ export async function POST(request: NextRequest) {
       throw new Error(errorData.error)
     }
     const data = (await res.json()) as { token: string }
-
-    const curretUserToken = data.token
-    const user = curretUserToken.at(-1)
-    console.log(user)
 
       ; (await cookies()).set("token", data.token, {
         sameSite: "lax",
