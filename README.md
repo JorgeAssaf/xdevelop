@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# xDevelop - Plataforma de Gestión de Contenidos
 
-## Getting Started
+Bienvenido a **xDevelop**, una aplicación web moderna desarrollada con **Next.js 14 (App Router)**. Este proyecto demuestra la integración de autenticación segura, consumo de múltiples APIs públicas y un manejo eficiente del estado global.
 
-First, run the development server:
+## 🚀 Características Principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Autenticación Segura**: Sistema de Login/Registro propio utilizando JWT y Cookies HTTP-only.
+- **Gestión de Usuarios**: Visualización y filtrado de usuarios consumiendo APIs externas.
+- **Blog de Posts**: Listado de publicaciones vinculadas a usuarios.
+- **Catálogo de Libros**: Explorador de libros con detalles y búsqueda.
+- **Diseño Responsivo**: Interfaz construida con Tailwind CSS y componentes reutilizables.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Stack Tecnológico
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js 16](https://nextjs.org/)
+- **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
+- **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
+- **Estado y Caché**: [TanStack Query (React Query)](https://tanstack.com/query/latest)
+- **Autenticación**: JWT con Cookies HTTP-only
+- **APIs Consumidas**:
+  - [JSONPlaceholder](https://jsonplaceholder.typicode.com/) para usuarios y posts
+  - [Open Library API](https://openlibrary.org/developers/api) para libros
+  - [reqres.in](https://reqres.in/) para autenticación de usuarios
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📋 Prerrequisitos
 
-## Learn More
+Asegúrate de tener instalado:
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js (v18 o superior)
+- pnpm (recomendado), npm o yarn
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Instalación y Ejecución
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Sigue estos pasos para correr el proyecto localmente:
 
-## Deploy on Vercel
+1. **Clonar el repositorio**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```bash
+   git clone <URL_DE_TU_REPO>
+   cd xdevelop
+   pnpm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. **Iniciar el Servidor de Desarrollo**
+   ```bash
+   pnpm dev
+   ```
+   Abre tu navegador y visita `http://localhost:3000` para ver la aplicación en acción.
+
+## 📂 Estructura del Proyecto
+
+- `app/`: Rutas y componentes principales de la aplicación.
+- `components/`: Componentes reutilizables de UI.
+- `lib/`: Funciones de utilidad y configuración de APIs.
+- `hooks/`: Custom hooks para manejo de estado y lógica de negocio.
+- `proxy.ts`: Middleware para manejo de autenticación y rutas protegidas.
+
+## 🤝 Contribuciones
